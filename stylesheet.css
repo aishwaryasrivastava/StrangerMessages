@@ -8,21 +8,42 @@ body, html {
     src: url(BenguiatBold.ttf);
 }
 
-.heading {
-	font-family: StrangerThings;
-	color: white;
-	text-align: center;
+@font-face {
+    font-family: WallWriting;
+    src: url(KGLifeIsMessy.ttf);
+}
+
+.alphabets{
+    font-family: WallWriting;
+    color: black;
+    text-align: center;
+    font-size: 72px
+}
+
+.mainpage {
+    font-family: StrangerThings;
+    color: white;
+    text-align: center;
 }
 
 .bg {
-    /* The image used */
-    background-image: url("MainBackground.gif");
 
     /* Full height */
     height: 100%; 
-
+    text-align: center;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.main {
+    /* The image used */
+    background-image: url("MainBackground.gif");
+    align-items: center
+    
+}
+.wall { 
+        /* The image used */
+        background-image: url("wallpaper.jpg");
+    }

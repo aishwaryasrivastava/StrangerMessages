@@ -16,6 +16,11 @@ function createJoyceWall(){
 		// Get the alphabet
 		var char = String.fromCharCode(65 + i)
 
+		
+
+		
+
+
 		// Create the alphabet
 		var alphabet = document.createElement("span");
 		alphabet.innerHTML = char;
@@ -28,10 +33,14 @@ function createJoyceWall(){
 
 		// Create a bulb
 		var bulb = document.createElement("span");
-		bulb.setAttribute("class","oval");
+		bulb.setAttribute("class","dot");
 		bulb.setAttribute("id","bulb_"+char);
 		bulb.style.backgroundColor = colors[color];
+		bulb.style.position = "relative";
+		bulb.style.left = String(-2*rect.width/3) + "px";
+		bulb.style.top = String((-2*rect.height/3)) + "px";
 		wall.appendChild(bulb);
+		
 
 		
 

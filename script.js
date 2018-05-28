@@ -8,17 +8,13 @@ function myFunction() {
 
 // Creates the wall with the alphabets and bulbs
 function createJoyceWall(){
+	var colors = ["#f7f0c3","#1a07f7","#f707eb","#f78b07"];
 	var txt = " "
 	var wall = document.getElementById("wall");
 	for (i = 0; i < 26; i++) {
+		color = i%colors.length;
 		// Get the alphabet
 		var char = String.fromCharCode(65 + i)
-
-		// Create a bulb
-		var bulb = document.createElement("span");
-		bulb.setAttribute("class","dot");
-		bulb.setAttribute("id","bulb_"+char);
-		wall.appendChild(bulb);
 
 		// Create the alphabet
 		var alphabet = document.createElement("span");
@@ -26,6 +22,18 @@ function createJoyceWall(){
 		alphabet.setAttribute("class", "alphabet");
 		alphabet.setAttribute("id",char);
 		wall.appendChild(alphabet);
+
+		var rect = alphabet.getBoundingClientRect();
+		console.log(rect.top, rect.left);
+
+		// Create a bulb
+		var bulb = document.createElement("span");
+		bulb.setAttribute("class","oval");
+		bulb.setAttribute("id","bulb_"+char);
+		bulb.style.backgroundColor = colors[color];
+		wall.appendChild(bulb);
+
+		
 
 		// Line break after H and Q
 		if (char == "H" || char == "Q"){
@@ -38,20 +46,24 @@ function createJoyceWall(){
 // Lights up the bulb object for 0.5s, lights back down
 function lightUp(bulb){
 	var originalColor = bulb.style.backgroundColor;
+	//var originalFilter = bulb.style.filter;
 	bulb.style.backgroundColor = "white";
-	
 	var head = document.getElementsByTagName('head')[0];
 	var glowScript = document.createElement("script");
 	glowScript.setAttribute("type","text/javascript");
-	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"10\",color:\""+"green"+"\"});\n});"
+	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"30\",color:\""+originalColor+"\"});\n});"
 	head.appendChild(glowScript);
 	
-	setTimeout(function(){bulb.style.backgroundColor = originalColor;var head = document.getElementsByTagName('head')[0];
-	var glowScript = document.createElement("script");
-	glowScript.setAttribute("type","text/javascript");
-	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"0\",color:\""+"green"+"\"});\n});"
-	head.appendChild(glowScript);},500);
-		
+	setTimeout(
+		function(){
+			bulb.style.backgroundColor = originalColor;
+			//bulb.style.filter = "brightness(40%)"; 
+			var head = document.getElementsByTagName('head')[0];
+			var glowScript = document.createElement("script");
+			glowScript.setAttribute("type","text/javascript");
+			glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"0\",color:\""+originalColor+"\"});\n});"
+			head.appendChild(glowScript);
+		},500);
 }
 
 // Lights up the letters of message one by one

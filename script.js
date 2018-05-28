@@ -38,8 +38,19 @@ function createJoyceWall(){
 // Lights up the bulb object for 0.5s, lights back down
 function lightUp(bulb){
 	var originalColor = bulb.style.backgroundColor;
-	bulb.style.backgroundColor = "white"
-	setTimeout(function(){bulb.style.backgroundColor = originalColor;},500);
+	bulb.style.backgroundColor = "white";
+	
+	var head = document.getElementsByTagName('head')[0];
+	var glowScript = document.createElement("script");
+	glowScript.setAttribute("type","text/javascript");
+	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"10\",color:\""+"green"+"\"});\n});"
+	head.appendChild(glowScript);
+	
+	setTimeout(function(){bulb.style.backgroundColor = originalColor;var head = document.getElementsByTagName('head')[0];
+	var glowScript = document.createElement("script");
+	glowScript.setAttribute("type","text/javascript");
+	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"0\",color:\""+"green"+"\"});\n});"
+	head.appendChild(glowScript);},500);
 		
 }
 

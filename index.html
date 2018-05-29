@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="stylesheet.css">
+		<link rel = "stylesheet" href = "animate.css">
 		<script src="jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="jquery.glow.js" type="text/javascript"></script>
 		<script src="script.js"></script>
@@ -11,15 +12,24 @@
 				margin: 0;
 			}
 		</style>
+		<script>
+			
+			function isValid(str){
+ 	return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?1234567890]/g.test(str);
+}
+		</script>
 	</head>
 	<body>
 		<div class="main bg">
-			<div id = "title">
-			<img id = "logo" src = "LOGO.png">
-			<form action = "wall.html" class = "form" id="message" method = "GET">
-				Enter your message here: 
-				<input type="text" name="message">
-				<input type="submit" value = "Submit">
+			<div  id = "title">
+			<img  id = "logo" src = "LOGO.png">
+			<form autocomplete="off" action = "wall.html" class = "fadeInDown animated form" id="message" method = "GET">
+				Enter your message 
+				<br>
+				<input type="text" name="message" autofocus = "autofocus" pattern = "[a-zA-Z ]*">
+				<br>
+				<input class = "submit" type="submit" value = "Submit">
+				
 			</form>
 		</div>
 	  	</div>

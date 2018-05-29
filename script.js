@@ -1,10 +1,20 @@
 function myFunction() {
     var search = window.location.search;
     var msg = search.substring(search.indexOf("=")+1);
+    msg = msg.replaceAll("+","");
     createJoyceWall();
     showMessage(msg);
 	
 }
+
+function isValid(str){
+ return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?1234567890]/g.test(str);
+}
+
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+} 
 
 // Creates the wall with the alphabets and bulbs
 function createJoyceWall(){

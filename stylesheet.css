@@ -17,6 +17,11 @@ body, html {
     src: url(KGLifeIsMessy.ttf);
 }
 
+@font-face {
+    font-family: OldComputer;
+    src: url(zig_____.ttf);
+}
+
 .alphabet{
     font-family: WallWriting;
     color: black;
@@ -31,13 +36,6 @@ body, html {
     font-size: 60px;
 }
 
-.form {
-    font-family: StrangerThings;
-    color: white;
-    font-size: 28px;
-    position: relative;
-    transform: translateY(100%);
-}
 
 .bg {
 
@@ -70,8 +68,8 @@ body, html {
 
 #logo{
     position: relative;
-        top: 50%;
-        transform: translateY(20%);
+    top: 50%;
+    transform: translateY(40%);
 }
 
 
@@ -82,3 +80,44 @@ body, html {
     display: inline-block;
     position: absolute;
     }
+
+.submit {
+    font-family: StrangerThings;
+}
+.submit:hover {
+
+    font-style: italic;
+}
+.form {
+    font-family: StrangerThings;
+    color: white;
+    font-size: 28px;
+    position: relative;
+    top: 50%;
+    transform: translateY(20%);
+    margin: 50px;
+    padding: 5px;
+    display: inline-block;
+}
+
+.form input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: white;
+  font-size: 28px;
+  font-family: OldComputer;
+  text-align: center;
+}
+
+.form input:valid {
+    color: white;
+}
+
+.form input:invalid {
+    color:red;
+}
+
+.form input:invalid ~ .submit {
+    visibility: hidden;
+}

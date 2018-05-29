@@ -88,7 +88,7 @@ function showMessage(message){
 			div.setAttribute("id","goAgain");
 			div.setAttribute("class","fadeInDown animated");
 			var link = document.createElement("a");
-			link.setAttribute("href","index.html");
+			link.setAttribute("href","../index.html");
 			link.innerHTML = "Send another message";
 			div.appendChild(link);
 			setTimeout(function(){page.appendChild(div);},1000);

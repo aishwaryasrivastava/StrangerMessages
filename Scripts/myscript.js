@@ -1,4 +1,10 @@
-function myFunction() {
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+} 
+
+// Onload function for wall.html
+function getWall() {
     var search = window.location.search;
     var msg = search.substring(search.indexOf("=")+1);
     msg = msg.replaceAll("+","");
@@ -7,29 +13,14 @@ function myFunction() {
 	
 }
 
-function isValid(str){
- return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?1234567890]/g.test(str);
-}
-
-String.prototype.replaceAll = function(str1, str2, ignore) 
-{
-    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
-} 
-
 // Creates the wall with the alphabets and bulbs
 function createJoyceWall(){
-	var colors = ["#f7f0c3","#1a07f7","#f707eb","#f78b07"];
+	var colors = ["#003284","#840084","#840000","#008436"];
 	var txt = " "
 	var wall = document.getElementById("wall");
 	for (i = 0; i < 26; i++) {
-		color = i%colors.length;
 		// Get the alphabet
 		var char = String.fromCharCode(65 + i)
-
-		
-
-		
-
 
 		// Create the alphabet
 		var alphabet = document.createElement("span");
@@ -39,21 +30,17 @@ function createJoyceWall(){
 		wall.appendChild(alphabet);
 
 		var rect = alphabet.getBoundingClientRect();
-		console.log(rect.top, rect.left);
 
 		// Create a bulb
 		var bulb = document.createElement("span");
 		bulb.setAttribute("class","dot");
 		bulb.setAttribute("id","bulb_"+char);
-		bulb.style.backgroundColor = colors[color];
+		bulb.style.backgroundColor = colors[Math.floor((Math.random() * 4) + 0)];
 		bulb.style.position = "relative";
 		bulb.style.left = String(-2*rect.width/3) + "px";
 		bulb.style.top = String((-2*rect.height/3)) + "px";
 		wall.appendChild(bulb);
 		
-
-		
-
 		// Line break after H and Q
 		if (char == "H" || char == "Q"){
 			var linebreak = document.createElement("br");
@@ -70,7 +57,7 @@ function lightUp(bulb){
 	var head = document.getElementsByTagName('head')[0];
 	var glowScript = document.createElement("script");
 	glowScript.setAttribute("type","text/javascript");
-	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"30\",color:\""+originalColor+"\"});\n});"
+	glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"30\",color:\""+"white"+"\"});\n});"
 	head.appendChild(glowScript);
 	
 	setTimeout(
@@ -80,7 +67,7 @@ function lightUp(bulb){
 			var head = document.getElementsByTagName('head')[0];
 			var glowScript = document.createElement("script");
 			glowScript.setAttribute("type","text/javascript");
-			glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"0\",color:\""+originalColor+"\"});\n});"
+			glowScript.innerHTML = "$(document).ready(\nfunction(){\n$(\"#"+bulb.id+"\").glow({radius:\"-1\",color:\""+"white"+"\"});\n});"
 			head.appendChild(glowScript);
 		},500);
 }
@@ -94,6 +81,19 @@ function showMessage(message){
 		lightUp(bulb);
 		if(++i < message.length){
 			setTimeout(show,1000);
+		}
+		if (i == message.length){
+			var page = document.getElementById("page");
+			var div = document.createElement("div");
+			div.setAttribute("id","goAgain");
+			div.setAttribute("class","fadeInDown animated");
+			var link = document.createElement("a");
+			link.setAttribute("href","index.html");
+			link.innerHTML = "Send another message";
+			div.appendChild(link);
+			setTimeout(function(){page.appendChild(div);},1000);
+			
+			
 		}
 	}
 	setTimeout(show,1000);

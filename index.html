@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="stylesheet.css">
-		<link rel = "stylesheet" href = "animate.css">
-		<script src="jquery-3.1.1.min.js" type="text/javascript"></script>
-		<script src="jquery.glow.js" type="text/javascript"></script>
-		<script src="script.js"></script>
+		<link rel="stylesheet" href="Stylesheets/mystylesheet.css">
+		<link rel = "stylesheet" href = "Stylesheets/animate.css">
+		<script src="Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="Scripts/jquery.glow.js" type="text/javascript"></script>
+		<script src="Scripts/myscript.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style>
 			* {
@@ -18,20 +18,24 @@
  	return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?1234567890]/g.test(str);
 }
 		</script>
+		<title>Stranger Messages</title>
 	</head>
 	<body>
 		<div class="main bg">
 			<div  id = "title">
-			<img  id = "logo" src = "LOGO.png">
+			<img  id = "logo" src = "Images/Logo.png">
 			<form autocomplete="off" action = "wall.html" class = "fadeInDown animated form" id="message" method = "GET">
-				Enter your message 
+				Enter your message<br>
+				<span class = "sub">Only alphabets and spaces, please.</span>
 				<br>
-				<input type="text" name="message" autofocus = "autofocus" pattern = "[a-zA-Z ]*">
+				<input class = "inputtext" type="text" name="message" autofocus = "autofocus" pattern = "[a-zA-Z]+[a-zA-Z ]*" required>
 				<br>
 				<input class = "submit" type="submit" value = "Submit">
 				
 			</form>
 		</div>
+		<span class = "credits">MADE BY <a href = "http://www.aishwaryasrivastava.net/">AISHWARYA SRIVASTAVA</a></span>
 	  	</div>
+
 	</body>
 </html>

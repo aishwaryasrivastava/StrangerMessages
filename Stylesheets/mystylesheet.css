@@ -9,17 +9,17 @@ body, html {
 
 @font-face {
     font-family: StrangerThings;
-    src: url(./Fonts/BenguiatBold.ttf);
+    src: url(../Fonts/BenguiatBold.ttf);
 }
 
 @font-face {
     font-family: WallWriting;
-    src: url('./Fonts/KGLifeIsMessy.ttf');
+    src: url('../Fonts/KGLifeIsMessy.ttf');
 }
 
 @font-face {
     font-family: OldComputer;
-    src: url(./Fonts/zig.ttf);
+    src: url(../Fonts/zig.ttf);
 }
 
 
